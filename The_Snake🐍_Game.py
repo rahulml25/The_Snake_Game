@@ -137,6 +137,12 @@ class Game:
                 self.play_sound('crash')
                 raise "Collision Occurred"
 
+    def showText(self):
+        font = pygame.font.SysFont('arial',30)
+        score = font.render(f"Score: {self.snake.length}",True,(200,200,200))
+        self.surface.blit(score,(850,10))
+
+
     def display_score(self):
         font = pygame.font.SysFont('arial',30)
         score = font.render(f"Score: {self.snake.length}",True,(200,200,200))
