@@ -141,7 +141,6 @@ class Game:
                 raise "Collision Occurred"
 
     def showText(self, text, colour, text_size, (text_x, text_y)):
-
         font = pygame.font.SysFont('arial',text_size)
         Text = font.render(text,True,colour)
         self.surface.blit(Text,(text_x,text_y))
