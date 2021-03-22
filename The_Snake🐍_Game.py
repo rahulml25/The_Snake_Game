@@ -82,6 +82,9 @@ class Game:
         pygame.mixer.init()
         self.play_background_music()
         
+        # Colours
+        self.White = (200,200,200)
+        
         self.display_height = 1280 # Pixels by height
         self.display_wight = 720 # Pixels by wight
         
@@ -137,16 +140,14 @@ class Game:
                 self.play_sound('crash')
                 raise "Collision Occurred"
 
-    def showText(self):
-        font = pygame.font.SysFont('arial',30)
-        score = font.render(f"Score: {self.snake.length}",True,(200,200,200))
-        self.surface.blit(score,(850,10))
+    def showText(self, text, colour, text_size, (text_x, text_y)):
 
+        font = pygame.font.SysFont('arial',text_size)
+        Text = font.render(text,True,colour)
+        self.surface.blit(Text,(text_x,text_y))
 
     def display_score(self):
-        font = pygame.font.SysFont('arial',30)
-        score = font.render(f"Score: {self.snake.length}",True,(200,200,200))
-        self.surface.blit(score,(850,10))
+        showText(f"Score: {self.snake.length*10}",self.White,30,(680,10))
 
     def show_game_over(self):
         self.render_background()
