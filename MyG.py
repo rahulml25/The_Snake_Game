@@ -162,7 +162,7 @@ class Game:
             self.apple.move()
 
         # snake colliding with itself
-        for i in range(3, self.length):
+        for i in range(3, self.snake.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
                 self.play_sound('crash')
                 pause = True #raise "Collision Occurred"
