@@ -89,17 +89,17 @@ class Game:
         self.apple = Apple(self.surface)
         self.apple.draw()
 
-    def text_screen(text, color, x, y, size):
+    def text_screen(text, colour, size, text_x, text_y):
         font = pygame.font.SysFont(None, size)
-        screen_text = font.render(text, True, color)
-        self.surface.blit(screen_text, [x,y])
+        screen_text = font.render(text, True, colour)
+        self.surface.blit(screen_text, [text_x,text_y])
     
     def welcome(self):
         self.render_background()
-        self.text_screen("Welcome to Snakes", red, 100, 250, 80)
+        self.text_screen("Welcome to Snakes", (225,0,0), 80, 100, 250)
         Font = pygame.font.SysFont(None, 40)
         Pe = "Press Space Bar To Play"
-        screentextPe = Font.render( Pe, True, gray)
+        screentextPe = Font.render(Pe, True, (50,50,50))
         gameWindow.blit(screentextPe, [200,700])
        # text_screen("Press Space Bar To Play", black, 150, 300)
         for event in pygame.event.get():
