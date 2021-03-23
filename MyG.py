@@ -95,7 +95,8 @@ class Game:
     
     def welcome(self):
         self.render_background()
-        self.text_screen("Welcome to Snakes", (225,0,0), 80, 100, 250)        Font = pygame.font.SysFont(None, 40)
+        self.text_screen("Welcome to Snakes", (225,0,0), 80, 100, 250)
+        Font = pygame.font.SysFont(None, 40)
         Pe = "Press Space Bar To Play"
         screentextPe = Font.render(Pe, True, (50,50,50))
         self.surface.blit(screentextPe, [200,700])
