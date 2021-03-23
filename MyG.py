@@ -77,17 +77,16 @@ class Snake:
 class Game:
     def __init__(self):
         pygame.init()
-        pygame.display.set_caption("Codebasics Snake And Apple Game")
-        
-        self.fps = 144
-
         pygame.mixer.init()
-        
+        pygame.display.set_caption("Codebasics Snake And Apple Game")
+
         self.surface = pygame.display.set_mode((720, 1280))
         self.snake = Snake(self.surface)
         self.snake.draw()
         self.apple = Apple(self.surface)
         self.apple.draw()
+        
+        self.fps = 144
 
     def text_screen(text, colour, size, text_x, text_y):
         font = pygame.font.SysFont(None, size)
