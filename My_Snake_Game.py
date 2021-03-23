@@ -145,7 +145,6 @@ class Game:
     
     def play(self):
         self.welcome()
-        
         # snake eating apple scenario
         if self.is_collision(self.snake.x[0], self.snake.y[0], self.apple.x, self.apple.y):
             self.play_sound("ding")
