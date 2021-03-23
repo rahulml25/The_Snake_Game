@@ -96,11 +96,12 @@ class Game:
     
     def welcome(self):
         self.render_background()
-        self.text_screen("Welcome to Snakes", (225,0,0), 80, 100, 250)
+        # self.text_screen("Welcome to Snakes", (225,0,0), 80, 100, 250)
         Font = pygame.font.SysFont(None, 40)
-        Pe = "Press Space Bar To Play"
-        screentextPe = Font.render(Pe, True, (50,50,50))
-        self.surface.blit(screentextPe, [200,700])
+        wish_welcome = "Welcome to Snakes"
+        str_cmd = "Press Space Bar To Play"
+        screentext_str_cmd = Font.render(str_cmd, True, (50,50,50))
+        self.surface.blit(screentext_str_cmd, [200,700])
         pygame.display.update()
         
        # Getting user Key Command
@@ -165,7 +166,7 @@ class Game:
         for i in range(3, self.snake.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
                 self.play_sound('crash')
-                pause = True #raise "Collision Occurred"
+                raise "Collision Occurred"
 
     def display_score(self):
         font = pygame.font.SysFont('arial',30)
