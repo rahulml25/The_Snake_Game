@@ -82,12 +82,10 @@ class Game:
 
         self.surface = pygame.display.set_mode((720, 1280))
         self.snake = Snake(self.surface)
-        self.sna
         self.apple = Apple(self.surface)
-        self.apple.draw()
         
         self.fps = 144
-
+        
     def text_screen(text, colour, size, text_x, text_y):
         font = pygame.font.SysFont(None, size)
         screen_text = font.render(text, True, colour)
@@ -101,9 +99,12 @@ class Game:
         screentextPe = Font.render(Pe, True, (50,50,50))
         self.surface.blit(screentextPe, [200,700])
         pygame.display.update()
+        
        # Getting user Key Command
         for event in pygame.event.get():
+            
             if event.type == pygame.KEYDOWN:
+                
                 if enemy.key == K_0:
                     exit_game = True
                 
@@ -114,7 +115,7 @@ class Game:
                     self.apple.draw()
                     self.display_score()
                     pygame.display.update()
-        
+    
     def play_background_music(self):
         pygame.mixer.music.load('resources/bg_music_1.mp3')
         pygame.mixer.music.play(-1, 0)
