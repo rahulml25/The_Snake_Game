@@ -121,6 +121,8 @@ class Game:
     def play_background_music(self):
         pygame.mixer.music.load('resources/bg_music_1.mp3')
         pygame.mixer.music.play(-1, 0)
+        
+    def play_sound(self, sound_name):
         if sound_name == "crash":
             sound = pygame.mixer.Sound("resources/crash.mp3")
         elif sound_name == 'ding':
@@ -163,7 +165,7 @@ class Game:
         for i in range(3, self.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
                 self.play_sound('crash')
-                raise "Collision Occurred"
+                pause = True #raise "Collision Occurred"
 
     def display_score(self):
         font = pygame.font.SysFont('arial',30)
