@@ -82,7 +82,7 @@ class Game:
 
         self.surface = pygame.display.set_mode((720, 1280))
         self.snake = Snake(self.surface)
-        self.snake.draw()
+        self.sna
         self.apple = Apple(self.surface)
         self.apple.draw()
         
@@ -95,12 +95,12 @@ class Game:
     
     def welcome(self):
         self.render_background()
-        self.text_screen("Welcome to Snakes", (225,0,0), 80, 100, 250)
-        Font = pygame.font.SysFont(None, 40)
+        self.text_screen("Welcome to Snakes", (225,0,0), 80, 100, 250)        Font = pygame.font.SysFont(None, 40)
         Pe = "Press Space Bar To Play"
         screentextPe = Font.render(Pe, True, (50,50,50))
-        gameWindow.blit(screentextPe, [200,700])
-       # text_screen("Press Space Bar To Play", black, 150, 300)
+        self.surface.blit(screentextPe, [200,700])
+        pygame.display.update()
+       # Getting user Key Command
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if enemy.key == K_0:
@@ -108,6 +108,7 @@ class Game:
                 
                 if event.key == K_SPACE:
                     self.play_background_music()
+                    self.snake.draw()
                     self.snake.walk()
                     self.apple.draw()
                     self.display_score()
@@ -116,8 +117,6 @@ class Game:
     def play_background_music(self):
         pygame.mixer.music.load('resources/bg_music_1.mp3')
         pygame.mixer.music.play(-1, 0)
-
-    def play_sound(self, sound_name):
         if sound_name == "crash":
             sound = pygame.mixer.Sound("resources/crash.mp3")
         elif sound_name == 'ding':
