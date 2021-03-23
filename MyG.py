@@ -97,11 +97,14 @@ class Game:
     def welcome(self):
         self.render_background()
         # self.text_screen("Welcome to Snakes", (225,0,0), 80, 100, 250)
-        Font = pygame.font.SysFont(None, 40)
+        font = pygame.font.SysFont(None, 80)
+        font = pygame.font.SysFont('arial', 40)
         wish_welcome = "Welcome to Snakes"
         str_cmd = "Press Space Bar To Play"
-        screentext_str_cmd = Font.render(str_cmd, True, (50,50,50))
+        screentext_wish_welcome = font.render(wish_welcome, True, (225,0,0))
+        screentext_str_cmd = font2.render(str_cmd, True, (50,50,50))
         self.surface.blit(screentext_str_cmd, [200,700])
+        self.surface.blit(screentext_str_cmd, [100,250])
         pygame.display.update()
         
        # Getting user Key Command
