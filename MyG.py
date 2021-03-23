@@ -78,12 +78,14 @@ class Game:
     def __init__(self):
         pygame.init()
         pygame.mixer.init()
+        
         pygame.display.set_caption("Codebasics Snake And Apple Game")
-
         self.surface = pygame.display.set_mode((720, 1280))
+        
         self.snake = Snake(self.surface)
         self.apple = Apple(self.surface)
         
+        self.clock = pygame.time.Clock()
         self.fps = 144
         
     def text_screen(text, colour, size, text_x, text_y):
@@ -221,7 +223,7 @@ class Game:
                 pause = True
                 self.reset()
 
-            pygame.time.Clock().tick(self.fps)
+            self.clock.tick(self.fps)
 
 if __name__ == '__main__':
     game = Game()
