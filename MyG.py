@@ -85,6 +85,7 @@ class Game:
         self.snake = Snake(self.surface)
         self.apple = Apple(self.surface)
         
+        self.Keys = pygame.event.get()
         self.clock = pygame.time.Clock()
         self.fps = 144
         
@@ -103,9 +104,8 @@ class Game:
         pygame.display.update()
         
        # Getting user Key Command
-        for event in pygame.event.get():
-            
-            if event.type == pygame.KEYDOWN:
+        for event in self.Keys:
+            if event.type == KEYDOWN:
                 
                 if enemy.key == K_0:
                     exit_game = True
@@ -185,7 +185,7 @@ class Game:
         pause = False
 
         while running:
-            for event in pygame.event.get():
+            for event in self.Keys:
                 if event.type == KEYDOWN:
                     if event.key == K_9:
                         pygame.mixer.music.pause()
