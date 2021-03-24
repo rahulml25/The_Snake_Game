@@ -199,7 +199,7 @@ class Game:
                 if event.key == K_RETURN:
                     pygame.mixer.music.unpause()
                     self.pause = False
-                    self.welcomes()
+                    self.welcome()
                     
                 elif event.keys == K_9:
                     self.running = False
