@@ -191,14 +191,12 @@ class Game:
     	running = True
     	pause = False
         if(not os.path.exists("hiscore.txt")):
-
         with open("hiscore.txt", "w") as f:
-
             f.write("0")
-
-    with open("hiscore.txt", "r") as f:
-
-        hiscore = f.read()
+            
+        with open("hiscore.txt", "r") as f:
+            hiscore = f.read()
+            
     	if not pause:
             while running:
                 for event in pygame.event.get():
