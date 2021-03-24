@@ -8,8 +8,8 @@ import os
 
 SIZE = 40
 FPS = 144
-SCREEN_HEIGHT = 1280
 SCREEN_WIGHT = 720
+SCREEN_HEIGHT = 1280
 BACKGROUND_COLOR = (110, 110, 5)
 
 class Apple:
@@ -84,7 +84,7 @@ class Game:
         pygame.mixer.init()
         
         pygame.display.set_caption("Codebasics Snake And Apple Game")
-        self.surface = pygame.display.set_mode((720, 1280))
+        self.surface = pygame.display.set_mode((SCREEN_WIGHT, SCREEN_HEIGHT))
         
         self.snake = Snake(self.surface)
         self.apple = Apple(self.surface)
@@ -152,7 +152,7 @@ class Game:
     
     def render_background(self):
         bg = pygame.image.load("resources/background.jpg")
-        bg = pygame.transform.scale(bg, ( 720, 1280))
+        bg = pygame.transform.scale(bg, (SCREEN_WIGHT, SCREEN_HEIGHT))
         self.surface.blit(bg, (0,0))
     
     def wish_bye(self):
@@ -239,7 +239,7 @@ class Game:
                             
                 self.welcome()
             else:
-                game_over()
+                self.game_over()
             self.tick(FPS)
             #try:
 
