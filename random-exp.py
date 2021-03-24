@@ -4,7 +4,7 @@ import pygame
 from pygame.locals import *
 import random
 import time
-import 
+import os
 
 SIZE = 40
 BACKGROUND_COLOR = (110, 110, 5)
