@@ -86,6 +86,9 @@ class Game:
         self.snake = Snake(self.surface)
         self.apple = Apple(self.surface)
         
+        self.running = True
+        self.pause = False
+        
         self.tick = pygame.time.Clock().tick
         self.fps = 144
         
@@ -199,9 +202,7 @@ class Game:
                     running = False
         
     def run(self):
-    	running = True
-    	pause = False
-        while running:
+        while self.running:
             if(not os.path.exists("hiscore.txt")):
                 with open("hiscore.txt", "w") as f:
                     f.write("0")
@@ -209,7 +210,7 @@ class Game:
             with open("hiscore.txt", "r") as f:
                 hiscore = int(f.read())
             
-            if not pause:
+            if not self.pause:
                 for event in pygame.event.get():
                     if event.type == KEYDOWN:
                         if event.key == K_9:
@@ -218,21 +219,20 @@ class Game:
                         	pygame.time.wait(500)
                         	running = False
                             
-                        if not pause:
-                            if event.key == K_4:
-                            	self.snake.move_left()
+                        if event.key == K_4:
+                            self.snake.move_left()
                                 
-                            if event.key == K_6:
-                            	self.snake.move_right()
+                        if event.key == K_6:
+                            self.snake.move_right()
                                 
-                            if event.key == K_2:
-                            	self.snake.move_up()
+                        if event.key == K_2:
+                           	self.snake.move_up()
 
-                            if event.key == K_8:
-                         	   self.snake.move_down()
+                        if event.key == K_8:
+                            self.snake.move_down()
                             
-                        elif event.type == QUIT:
-                        	running = False
+                        #elif event.type == QUIT:
+                        #	running = False
                             
                 self.play()
             self.tick(self.fps)
