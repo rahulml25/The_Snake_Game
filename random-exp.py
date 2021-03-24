@@ -2,8 +2,9 @@
 
 import pygame
 from pygame.locals import *
-import time
 import random
+import time
+import 
 
 SIZE = 40
 BACKGROUND_COLOR = (110, 110, 5)
@@ -189,6 +190,15 @@ class Game:
     def run(self):
     	running = True
     	pause = False
+        if(not os.path.exists("hiscore.txt")):
+
+        with open("hiscore.txt", "w") as f:
+
+            f.write("0")
+
+    with open("hiscore.txt", "r") as f:
+
+        hiscore = f.read()
     	if not pause:
             while running:
                 for event in pygame.event.get():
