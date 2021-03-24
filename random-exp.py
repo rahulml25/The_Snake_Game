@@ -180,13 +180,6 @@ class Game:
         self.surface.blit(score,(50,10))
 
     def game_over(self):
-        if(not os.path.exists("hiscore.txt")):
-            with open("hiscore.txt", "w") as f:
-            f.write("0")
-            
-        with open("hiscore.txt", "r") as f:
-            hiscore = int(f.read())
-
         self.render_background()
         font = pygame.font.SysFont('arial', 30)
         line1 = font.render(f"Game is over! Your score is {self.snake.length}", True, (255, 255, 255))
@@ -196,10 +189,26 @@ class Game:
         pygame.mixer.music.pause()
         pygame.display.update()
         
+        for event in pygame.event.get():
+            if event.type = KEYDOWN:
+                if event.key == K_RETURN:
+                    pygame.mixer.music.unpause()
+                    pause = False
+                    
+                elif event.keys == K_9:
+                    running = False
+        
     def run(self):
     	running = True
     	pause = False
         while running:
+            if(not os.path.exists("hiscore.txt")):
+                with open("hiscore.txt", "w") as f:
+                    f.write("0")
+                    
+            with open("hiscore.txt", "r") as f:
+                hiscore = int(f.read())
+            
             if not pause:
                 for event in pygame.event.get():
                     if event.type == KEYDOWN:
@@ -209,9 +218,7 @@ class Game:
                         	pygame.time.wait(500)
                         	running = False
                             
-                        if event.key == K_RETURN:
-                        	pygame.mixer.music.unpause()
-                        	pause = False
+                        
                             
                         if not pause:
                             if event.key == K_4:
