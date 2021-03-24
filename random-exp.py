@@ -86,7 +86,7 @@ class Game:
         self.snake = Snake(self.surface)
         self.apple = Apple(self.surface)
         
-        self.clock = pygame.time.Clock()
+        self.tick = pygame.time.Clock().tick
         self.fps = 144
         
     def text_screen(text, colour, size, text_x, text_y):
@@ -157,6 +157,7 @@ class Game:
         bye = font.render(f"Bye!",True,(255,0,0))
         self.surface.blit(window,(270,520))
         self.surface.blit(bye, (300,520))
+        pygame.display.update()
     
     def play(self):
         self.welcome()
@@ -178,7 +179,14 @@ class Game:
         score = font.render(f"Score: {self.snake.length}",True,(200,200,200))
         self.surface.blit(score,(50,10))
 
-    def show_game_over(self):
+    def game_over(self):
+        if(not os.path.exists("hiscore.txt")):
+            with open("hiscore.txt", "w") as f:
+            f.write("0")
+            
+        with open("hiscore.txt", "r") as f:
+            hiscore = int(f.read())
+
         self.render_background()
         font = pygame.font.SysFont('arial', 30)
         line1 = font.render(f"Game is over! Your score is {self.snake.length}", True, (255, 255, 255))
@@ -187,44 +195,42 @@ class Game:
         self.surface.blit(line2, (200, 350))
         pygame.mixer.music.pause()
         pygame.display.update()
+        
     def run(self):
     	running = True
     	pause = False
-        if(not os.path.exists("hiscore.txt")):
-        with open("hiscore.txt", "w") as f:
-            f.write("0")
-            
-        with open("hiscore.txt", "r") as f:
-            hiscore = f.read()
-            
-    	if not pause:
-            while running:
+        while running:
+            if not pause:
                 for event in pygame.event.get():
                     if event.type == KEYDOWN:
                         if event.key == K_9:
                         	pygame.mixer.music.pause()
                         	self.wish_bye()
-                        	pygame.display.update()
                         	pygame.time.wait(500)
                         	running = False
+                            
                         if event.key == K_RETURN:
                         	pygame.mixer.music.unpause()
                         	pause = False
+                            
                         if not pause:
                             if event.key == K_4:
                             	self.snake.move_left()
+                                
                             if event.key == K_6:
                             	self.snake.move_right()
+                                
                             if event.key == K_2:
                             	self.snake.move_up()
 
                             if event.key == K_8:
                          	   self.snake.move_down()
+                            
                         elif event.type == QUIT:
                         	running = False
-                        if not pause:
-                        	self.play()
-            
+                            
+                self.play()
+            self.tick(self.fps)
             #try:
 
 #                if not pause:
@@ -234,7 +240,7 @@ class Game:
 #                self.show_game_over()
 #                pause = True
 #                self.re
-            self.clock.tick(self.fps)
+        #    self.clock.tick(self.fps)
 
 if __name__ == '__main__':
     game = Game()
