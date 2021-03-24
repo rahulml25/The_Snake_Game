@@ -7,22 +7,25 @@ import time
 import os
 
 SIZE = 40
+FPS = 144
+SCREEN_HEIGHT = 1280
+SCREEN_WIGHT = 720
 BACKGROUND_COLOR = (110, 110, 5)
 
 class Apple:
     def __init__(self, parent_screen):
         self.parent_screen = parent_screen
         self.image = pygame.image.load("resources/apple.jpg").convert()
-        self.x = 120
-        self.y = 120
+        self.x = random.randint(1,17)*SIZE
+        self.y = random.randint(1,31)*SIZE
 
     def draw(self):
         self.parent_screen.blit(self.image, (self.x, self.y))
         pygame.display.update()
 
     def move(self):
-        self.x = random.randint(1,24)*SIZE
-        self.y = random.randint(1,19)*SIZE
+        self.x = random.randint(1,17)*SIZE
+        self.y = random.randint(1,31)*SIZE
 
 class Snake:
     def __init__(self, parent_screen):
@@ -90,7 +93,6 @@ class Game:
         self.pause = False
         
         self.tick = pygame.time.Clock().tick
-        self.fps = 144
         
     def text_screen(text, colour, size, text_x, text_y):
         font = pygame.font.SysFont(None, size)
@@ -123,6 +125,7 @@ class Game:
                      self.snake.walk()
                      self.apple.draw()
                      self.display_score()
+                     self.play()
                      pygame.display.update()
     
     def play_background_music(self):
@@ -196,6 +199,7 @@ class Game:
                 if event.key == K_RETURN:
                     pygame.mixer.music.unpause()
                     self.pause = False
+                    self.welcomes()
                     
                 elif event.keys == K_9:
                     self.running = False
@@ -233,10 +237,10 @@ class Game:
                         #elif event.type == QUIT:
                         #	running = False
                             
-                self.play()
+                self.welcome()
             else:
                 game_over()
-            self.tick(self.fps)
+            self.tick(FPS)
             #try:
 
 #                if not pause:
