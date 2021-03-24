@@ -115,12 +115,11 @@ class Game:
             if event.type == KEYDOWN:
                 
                 if event.key == pygame.K_9:
-                    running = False
+                    self.running = False
                 
                 if event.key == pygame.K_SPACE:
                      self.render_background()
                      self.play_background_music()
-                     self.snake.draw()
                      self.snake.walk()
                      self.apple.draw()
                      self.display_score()
@@ -217,7 +216,7 @@ class Game:
                         	pygame.mixer.music.pause()
                         	self.wish_bye()
                         	pygame.time.wait(500)
-                        	running = False
+                        	self.running = False
                             
                         if event.key == K_4:
                             self.snake.move_left()
