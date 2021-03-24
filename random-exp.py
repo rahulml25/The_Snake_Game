@@ -218,8 +218,6 @@ class Game:
                         	pygame.time.wait(500)
                         	running = False
                             
-                        
-                            
                         if not pause:
                             if event.key == K_4:
                             	self.snake.move_left()
