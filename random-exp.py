@@ -169,6 +169,7 @@ class Game:
         for i in range(3, self.snake.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
                 self.play_sound('crash')
+                pause = True
                 raise "Collision Occurred"
 
     def display_score(self):
