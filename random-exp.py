@@ -174,7 +174,7 @@ class Game:
         for i in range(3, self.snake.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
                 self.play_sound('crash')
-                pause = True
+                self.pause = True
                 raise "Collision Occurred"
 
     def display_score(self):
@@ -196,10 +196,10 @@ class Game:
             if event.type = KEYDOWN:
                 if event.key == K_RETURN:
                     pygame.mixer.music.unpause()
-                    pause = False
+                    self.pause = False
                     
                 elif event.keys == K_9:
-                    running = False
+                    self.running = False
         
     def run(self):
         while self.running:
@@ -235,6 +235,8 @@ class Game:
                         #	running = False
                             
                 self.play()
+            else:
+                game_over()
             self.tick(self.fps)
             #try:
 
