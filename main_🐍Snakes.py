@@ -16,7 +16,7 @@ height = 840
 class Apple:
     def __init__(self, parent_screen):
         self.parent_screen = parent_screen
-        self.image = pygame.image.load("resources/apple.jpg").convert()
+        self.image = pygame.image.load("apple.jpg").convert()
         self.x = 120
         self.y = 120
 
@@ -31,7 +31,7 @@ class Apple:
 class Snake:
     def __init__(self, parent_screen):
         self.parent_screen = parent_screen
-        self.image = pygame.image.load("resources/block.jpg").convert()
+        self.image = pygame.image.load("block.jpg").convert()
         self.direction = 'stay'
 
         self.length = 1
@@ -75,11 +75,11 @@ class Snake:
         self.draw()
 
     def open_hiscore(self):
-        if (not os.path.exists('resources/highscore.txt')):
-            with open('resources/highscore.txt', 'w') as f:
+        if (not os.path.exists('highscore.txt')):
+            with open('highscore.txt', 'w') as f:
                 f.write(f'{self.score}')
         
-        with open('resources/highscore.txt') as f:
+        with open('highscore.txt') as f:
             return int(f.read())
     
     def draw(self):
@@ -120,14 +120,14 @@ class Game:
        # self.tick = pygame.time.Clock()
 
     def play_background_music(self):
-        pygame.mixer.music.load('resources/bg_music_1.mp3')
+        pygame.mixer.music.load('bg_music_1.mp3')
         pygame.mixer.music.play(-1, 0)
 
     def play_sound(self, sound_name):
         if sound_name == "crash":
-            sound = pygame.mixer.Sound("resources/crash.mp3")
+            sound = pygame.mixer.Sound('crash.mp3")
         elif sound_name == 'ding':
-            sound = pygame.mixer.Sound("resources/ding.mp3")
+            sound = pygame.mixer.Sound("ding.mp3")
 
         pygame.mixer.Sound.play(sound)
     
@@ -142,7 +142,7 @@ class Game:
         return False
 
     def render_background(self):
-        bg = pygame.image.load("resources/Abackground.jpg")
+        bg = pygame.image.load("background.jpg")
         bg = pygame.transform.scale(bg, (wight, height)).convert_alpha()
         self.surface.blit(bg, (0,0))
 
@@ -192,7 +192,7 @@ class Game:
         
         if self.snake.score>= self.snake.highscore:
             self.snake.update_highscore()
-            with open('resources/highscore.txt', 'w') as f:
+            with open('highscore.txt', 'w') as f:
                 f.write(str(self.snake.highscore))
         
         # snake colliding with itself
