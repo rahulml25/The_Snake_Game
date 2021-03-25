@@ -98,8 +98,8 @@ class Game:
         self.apple = Apple(self.surface)
         # self.apple.draw()
         
-        self.welcome()
         self.highscore = self.open_hiscore()
+        self.welcome()
        # self.tick = pygame.time.Clock()
 
     def play_background_music(self):
@@ -221,8 +221,8 @@ class Game:
                         pause = False
 
                     if event.key == K_3:
-                            self.Welcome()
-                            running = False
+                        self.Welcome()
+                        running = False
 
                     if not pause:
                         if event.key == K_4:
