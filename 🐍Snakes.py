@@ -195,6 +195,7 @@ class Game:
    
     def show_game_over(self):
         self.render_background()
+        pygame.mixer.music.pause()
         font1 = pygame.font.SysFont(None, 80)
         line1 = font1.render(f"Game is over!", True, (255, 0, 0))
         font = pygame.font.SysFont('arial', 30)
@@ -203,7 +204,6 @@ class Game:
         self.surface.blit(line1, (50, 300))
         self.surface.blit(line2, (50, 700))
         self.surface.blit(line3, (50, 400))
-        pygame.mixer.music.pause()
         pygame.display.flip()
 
     def run(self):
@@ -221,7 +221,7 @@ class Game:
                         pause = False
 
                     if event.key == K_3:
-                        self.Welcome()
+                        self.welcome()
                         running = False
 
                     if not pause:
