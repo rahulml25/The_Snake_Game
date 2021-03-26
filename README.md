@@ -6,7 +6,7 @@ Snake and apple is a simple game where when snake eats an apple it gets longer a
 **Game Play**
 
 ![](game_preview.gif)
--![](bg_music_1.mp3)
+![](bg_music_1.mp3)
 ### Exercise
 
 1. Add a logic to end the game if snake hits any of the wall boundaries of main screen. 
