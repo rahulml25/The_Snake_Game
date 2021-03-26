@@ -15,7 +15,7 @@ If it does, game should end in same way as we end it when snake collides with it
 
 2. Try increasing speed of snake to make game little more challenging.  Reduce the sleep time to may be 0.1 sec to achieve this.
 
-[Solution](https://github.com/codebasics/python_projects/blob/main/1_snake_game/exercise_solution.py)
+[Solution](https://github.com/RahulML2505GitHub/The_Snake_Game/blob/main/snakes.py)
 
 ### Tool to convert python file to .exe
 
@@ -23,3 +23,9 @@ I used below tool to convert python file to .exe file
 
 https://pypi.org/project/auto-py-to-exe/
 
+### Run Game in Mobile:
+
+Use [`Pydroid 3`](https://play.google.com/store/apps/details?id=ru.iiec.pydroid3) and [`PyModule Installer`](https://play.google.com/store/apps/details?id=ru.iiec.pydroid3.quickinstallrepo) for this.
+There in the `pip` install `pygame` module to run the game.
+
+**[Visit me](https://github.com/RahulML2505GitHub)**
