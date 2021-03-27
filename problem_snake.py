@@ -77,7 +77,7 @@ class Snake:
 class Game:
     def __init__(self):
         pygame.init()
-        pygame.display.set_caption("Codebasics Snake And Apple Game")
+        pygame.display.set_caption("Snake And Apple Game by Rahul")
 
         pygame.mixer.init()
         self.play_background_music()
