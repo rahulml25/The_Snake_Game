@@ -26,10 +26,8 @@ What's new:
 
 import pygame
 from pygame.locals import *
-import datetime
-import random
-import time
 from time import sleep
+import random
 import os
 
 # Colours
@@ -112,7 +110,6 @@ s7 = 's7.mp3'
 # Game modes
 kaushik_mode = False
 child_mode = False
-device = 'phone'
 
 def random_int(type):
     return random.randint(1,int((type/SIZE)-1))*SIZE
