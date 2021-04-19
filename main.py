@@ -146,17 +146,16 @@ class Apple:
 class Snake:      
     def __init__(self, parent_screen):
         self.parent_screen = parent_screen
-               
-        # Importing Snake 🐍 body
-        body_path = 'resources/images/snake/body/'
-        body = 'body.jpg'
-        self.body = pygame.image.load(f"{s_body_path}{s_body}").convert()
+        
+        # Loading Files
+        self.load_heads()
+        self.load_body()
         
         # Defining starting direction of Snake 🐍
         self.direction = None
-        
         # Defining Snake 🐍 length
         self.length = 1
+        
         # Making list for Snake 🐍 body and position
         self.x = [40] # List for 'X' axis
         self.y = [40] # List for 'Y' axis
@@ -166,7 +165,7 @@ class Snake:
         self.y[0] = random_int(height)
         
         # Importing Snake 🐍 Head with the below function
-        self.head = self.head_type()
+        self.initial_head()
         
         # Defining Game starting Score & High Score
         self.score = 0
@@ -184,7 +183,7 @@ class Snake:
         
         # Loading Heads
         for head in heads_names:
-            head_file = pygame.image.load(head_path+head")
+            head_file = pygame.image.load(head_path+head)
             resized_head = pygame.transform.scale(head_file, (SIZE, SIZE)).convert_alpha()
             heads.append(resized_head)
         
@@ -193,17 +192,22 @@ class Snake:
         self.h_R = heads[1]
         self.h_U = heads[2]
         self.h_D = heads[3]
- 
+
+    def load_body(self):
+        # Importing Snake 🐍 body
+        body_path = 'resources/images/snake/body/'
+        body = 'body.jpg'
+        self.body = pygame.image.load(body_path+s_body).convert()
+
     # Defining for Snake 🐍 Game starting Head type
-    def head_type(self):
+    def initial_head(self):
         # Starting Head if Snake 🐍 is at Left side
         if self.x[0] >= (wight/2):
             return self.h_L  
         # Starting Head if Snake 🐍 is at Right side
         if self.x[0] <= (wight/2):
             return self.h_R
-        
-    
+
     # Defining Function to move Snake 🐍 Left direction
     def move_left(self):
         self.direction = 'left'
@@ -239,22 +243,25 @@ class Snake:
             self.head = self.h_L
             
         # Defining condition to display Head turned to the Right direction
-        if self.direction == 'right':
+        elif self.direction == 'right':
             self.head = self.h_R
             
         # Defining condition to display Head turned to the Up direction
-        if self.direction == 'up':
+        elif self.direction == 'up':
             self.head = self.h_U
             
         # Defining condition to display Head turned to the Down direction
-        if self.direction == 'down':
+        elif self.direction == 'down':
             self.head = self.h_D
         
     # Defining Function to move the Snake 🐍 Head & body in a certain direction
     def walk(self):
         # Updating the body In stages
         for i in range(self.length-1,0,-1):
-            if child_mode:
+            if not child_mode:
+                    self.x[i] = self.x[i-1]
+                    self.y[i] = self.y[i-1]
+            else:
                 if self.direction == 'left':
                     self.x[i] = self.x[i-1] + SIZE
                     self.y[i] = self.y[i-1]
@@ -270,10 +277,6 @@ class Snake:
                 if self.direction == 'down':
                     self.x[i] = self.x[i-1]
                     self.y[i] = self.y[i-1] - SIZE
-                    
-            else:
-                self.x[i] = self.x[i-1]
-                self.y[i] = self.y[i-1]
 
         if not child_mode:
             # Updating the Snake 🐍 running direction
@@ -303,16 +306,13 @@ class Snake:
             return int(f.read()) # Returning the High Score
     
     # Drawing the Snake 🐍 Head & it's body
-    def draw(self):
-        # Drawing Snake 🐍 Head
-        self.parent_screen.blit(self.head, (self.x[0],self.y[0]))
-        
-        # Drawing Snake 🐍 body if the length is greater than One (head only)
+    def draw(self):        # Drawing Snake 🐍 body if the length is greater than One (head only)
         if self.length >= 1:
             # Running while loop to draw the full body
             for i in range(1,self.length):
                 self.parent_screen.blit(self.body, (self.x[i], self.y[i]))
-
+        # Drawing Snake 🐍 Head
+        self.parent_screen.blit(self.head, (self.x[0],self.y[0]))
         pygame.display.update()
     
     # Definition to increase the Snake 🐍 length & the score also
@@ -339,9 +339,7 @@ class Game:
         pygame.display.set_caption("Snake And Apple Game by Rahul") # Naming The Game window
         
         self.load_bgIs()
-        
-        self.snake = Snake(self.surface) # Calling Snake 🐍 object
-        self.apple = Apple(self.surface) # Calling Apple 🍎 object
+        self.setObjects()
 
         self.sond = None
         self.random_sound()
@@ -473,7 +471,6 @@ class Game:
     
     # Defining the Play Function to make the game playable
     def play(self):
-        #self.surface.fill(black) # Erasing or filling the last surface with black colour
         self.render_background('bgi2') # Rendering the background
         self.display_score() # Displaying Score and High Score
         if child_mode:
