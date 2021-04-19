@@ -30,6 +30,14 @@ from time import sleep
 import random
 import os
 
+# Window size
+Width = 720 # Screen Width
+Height = 1280 # Screen Height
+
+# Game Variables
+SIZE = 40
+FPS = 144
+
 # Colours
 red = (255,0,0)
 white = (255,255,255)
@@ -38,29 +46,10 @@ blue = (170,220,250)
 semi_white = (200,200,200)
 light_pink = (246, 205, 230)
 
-# Game Variables
-SIZE = 40
-FPS = 144
-
-# Window size
-wight = 720 # Screen Wight
-height = 1280 # Screen Height
-
 "Changeable Game Files"
-
-'⏹️Food (Apple 🍎) '
-food_path = 'resources/images/food/'
-
-apple_img = 'cut_head.jpg'
 
 '⏹️Snake 🐍'
 # Heads
-s_head_path = 'resources/images/snake/all_heads/'
-
-head_l = 'head_L.jpg'
-head_r = 'head_R.jpg'
-head_u = 'head_U.jpg'
-head_d = 'head_D.jpg'
 
 # Body
 s_body_path = 'resources/images/snake/body/'
@@ -118,7 +107,9 @@ class Apple:
     def __init__(self, parent_screen):
         self.parent_screen = parent_screen
         
-        img = pygame.image.load(f"{food_path}{apple_img}")
+        food_path = 'resources/images/food/'
+        apple_img = 'cut_head.jpg'
+        img = pygame.image.load(food_path+apple_img)
         self.image = pygame.transform.scale(img, (SIZE, SIZE)).convert_alpha()
         
         self.x = random_int(wight)
@@ -131,22 +122,23 @@ class Apple:
     def move(self):
         self.x = random_int(wight)
         self.y = random_int(height)
-    
+
+    # It is a cheat code Function
     def near_snake(self, snake_x, snake_y, snake_direction):
         
         if snake_x - (SIZE*3) != 0 and snake_direction == 'left':
             self.x = snake_x - (SIZE*2)
             self.y = snake_y
         
-        if snake_x + (SIZE*3) != wight and snake_direction == 'right':
+        elif snake_x + (SIZE*3) != Widht and snake_direction == 'right':
             self.x = snake_x + (SIZE*2)
             self.y = snake_y
         
-        if snake_y - (SIZE*3) != 0 and snake_direction == 'up':
+        elif snake_y - (SIZE*3) != 0 and snake_direction == 'up':
             self.x = snake_x
             self.y = snake_y - (SIZE*2)
         
-        if snake_y + (SIZE*3) != height and snake_direction == 'down':
+        elif snake_y + (SIZE*3) != Height and snake_direction == 'down':
             self.x = snake_x
             self.y = snake_y + (SIZE*2)
             
@@ -190,9 +182,15 @@ class Snake:
         self.highscore = self.open_hiscore()
         
     def load_heads(self):
+        head_path = 'resources/images/snake/all_heads/'
+        head_l = 'head_L.jpg'
+        head_r = 'head_R.jpg'
+        head_u = 'head_U.jpg'
+        head_d = 'head_D.jpg'
+        
         hF = [head_l,head_r,head_u,head_d]
         for i in hF:
-            pic = pygame.image.load(f"{s_head_path}{i}")
+            pic = pygame.image.load(head_path+i")
             pRd = pygame.transform.scale(pic, (SIZE, SIZE)).convert_alpha()
             self.heads.append(pRd)
         
