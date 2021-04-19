@@ -17,8 +17,9 @@ User Keys:
 What's new:
     
     1. You can enable child mode for children 😊
-    2. There is a special mode for my friend Kaushik. His requirement was not to die if Snake 🐍 collided with itself 😂
-    2. There is a new cheat code which is hidden*** 😜
+    2. There is a special mode for my friend Kaushik.
+       (His requirement was not to die if Snake 🐍 collided with itself 😂)
+    3. There is a new cheat code which is hidden*** 😜
 
 '''
 
@@ -52,9 +53,6 @@ light_pink = (246, 205, 230)
 # Heads
 
 # Body
-s_body_path = 'resources/images/snake/body/'
-
-s_body = 'body.jpg'
 
 '⏹️Game '
 # Background
@@ -148,17 +146,10 @@ class Apple:
 class Snake:      
     def __init__(self, parent_screen):
         self.parent_screen = parent_screen
-        
-        heads = self.heads = []
-        self.load_heads()
-        
-        # Types of Snake 🐍 Heads 
-        self.h_L = heads[0]
-        self.h_R = heads[1]
-        self.h_U = heads[2]
-        self.h_D = heads[3]
-        
+               
         # Importing Snake 🐍 body
+        body_path = 'resources/images/snake/body/'
+        body = 'body.jpg'
         self.body = pygame.image.load(f"{s_body_path}{s_body}").convert()
         
         # Defining starting direction of Snake 🐍
@@ -188,12 +179,21 @@ class Snake:
         head_u = 'head_U.jpg'
         head_d = 'head_D.jpg'
         
-        hF = [head_l,head_r,head_u,head_d]
-        for i in hF:
-            pic = pygame.image.load(head_path+i")
-            pRd = pygame.transform.scale(pic, (SIZE, SIZE)).convert_alpha()
-            self.heads.append(pRd)
+        heads_names = [head_l,head_r,head_u,head_d]
+        heads = []
         
+        # Loading Heads
+        for head in heads_names:
+            head_file = pygame.image.load(head_path+head")
+            resized_head = pygame.transform.scale(head_file, (SIZE, SIZE)).convert_alpha()
+            heads.append(resized_head)
+        
+        # Types of Snake 🐍 Heads 
+        self.h_L = heads[0]
+        self.h_R = heads[1]
+        self.h_U = heads[2]
+        self.h_D = heads[3]
+ 
     # Defining for Snake 🐍 Game starting Head type
     def head_type(self):
         # Starting Head if Snake 🐍 is at Left side
@@ -335,10 +335,9 @@ class Game:
         pygame.init() # Initialising pygame
         pygame.mixer.init() # Initialising pygame music runner
 
-        self.surface = pygame.display.set_mode((wight, height)) # Exciting display to Show the game to the user
+        self.surface = pygame.display.set_mode((Width, Height)) # Exciting display to Show the game to the user
         pygame.display.set_caption("Snake And Apple Game by Rahul") # Naming The Game window
         
-        self.bgIs = []
         self.load_bgIs()
         
         self.snake = Snake(self.surface) # Calling Snake 🐍 object
@@ -350,6 +349,7 @@ class Game:
         self.welcome() # Automatically calling welcome Function to wish the user Welcome and to get command to stat the game or exit it
         
     def load_bgIs(self):
+        self.bgIs = []
         bgFs = [bgi,bgi2]
         for i in bgFs:
             f = pygame.image.load(f"{bgi_path}{i}") # Loading background image
@@ -394,7 +394,7 @@ class Game:
         pygame.display.update()
     
     # Defining Function to replace the Snake 🐍 & Apple 🍎 on a random position again after Game is over
-    def reset(self):
+    def setObjects(self):
         self.snake = Snake(self.surface)
         self.apple = Apple(self.surface)
 
