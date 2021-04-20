@@ -262,16 +262,15 @@ class Snake:
 
     # Opening High Score file to note it
     def open_hiscore(self):
-        hiscr_path = 'resources/text_file/'
-        hiscr_path = 'resources/text_file/'
-        hiscr = 'highscore.txt'
+        self.hiscr_path = 'resources/text_file/'
+        self.hiscr = 'highscore.txt'
         # Exciting the 'highscore.txt' text file if it doesn't exists
-        if (not os.path.exists(f'{hiscr_path}{hiscr}')):
-            with open(f'{hiscr_path}{hiscr}', 'w') as f:
+        if (not os.path.exists(f'{self.hiscr_path}{self.hiscr}')):
+            with open(f'{self.hiscr_path}{self.hiscr}', 'w') as f:
                 f.write(f'{self.score}')
         
         # Reading the 'highscore.txt' text file and returning the High Score as an Integer
-        with open(f'{hiscr_path}{hiscr}') as f:
+        with open(f'{self.hiscr_path}{self.hiscr}') as f:
             return int(f.read()) # Returning the High Score
     
     # Drawing the Snake 🐍 Head & it's body
@@ -294,7 +293,7 @@ class Snake:
     # Updating The High Score with the Score if the Score is greater than the High Score
     def update_highscore(self):
         self.highscore = self.score
-        with open(f'{hiscr_path}{hiscr}', 'w') as f:
+        with open(f'{self.hiscr_path}{self.hiscr}', 'w') as f:
                 f.write(str(self.highscore))
 
 # Defining Game Object
