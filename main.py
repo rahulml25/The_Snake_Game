@@ -48,18 +48,7 @@ light_pink = (246, 205, 230)
 
 "Changeable Game Files"
 '⏹️Game '
-# Background
-# Music Files
-
-# Scary images
-
-
-
 # HighScore text File
-hiscr_path = 'resources/text_file/'
-
-hiscr = 'highscore.txt'
-
 # Sounds
 sound_effects_path = 'resources/musics/sound_effects/'
 
@@ -273,6 +262,9 @@ class Snake:
 
     # Opening High Score file to note it
     def open_hiscore(self):
+        hiscr_path = 'resources/text_file/'
+        hiscr_path = 'resources/text_file/'
+        hiscr = 'highscore.txt'
         # Exciting the 'highscore.txt' text file if it doesn't exists
         if (not os.path.exists(f'{hiscr_path}{hiscr}')):
             with open(f'{hiscr_path}{hiscr}', 'w') as f:
