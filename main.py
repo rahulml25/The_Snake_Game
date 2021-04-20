@@ -53,7 +53,7 @@ light_pink = (246, 205, 230)
 
 # Scary images
 
-mimi = 'remaining/mimi.jpg'
+
 
 # HighScore text File
 hiscr_path = 'resources/text_file/'
@@ -498,15 +498,10 @@ gameover_m = 'gameover.mp3'
     # Defining Function to display Game is over, user commands, Score and High Score after the 'Game over'
     def show_gameover(self):
         self.ang_mimi()
-        if not child_mode:
-            pass
-           # self.show_scary()
-            
+		
         # Showing 'Game is over'
-        self.show_text('Game is over!', None, 80, red, (50,300))
-        if child_mode:
-            # Showing 'Game is over'
-            self.show_text('Game is over!', None, 80, blue, (50,300))
+        self.show_text('Game is over!', None, 80, game_over_colour, (50,300))
+        if child_mode: game_over_colour = red
         # Showing User commands
         self.show_text('To play again press Enter', 'arial', 30, white, (50,400))
         self.show_text('To exit press 0', 'arial', 30, white, (50,450))
@@ -519,25 +514,26 @@ gameover_m = 'gameover.mp3'
         self.update_screen()
 
     def ang_mimi(self):
-        image = pygame.image.load(f'{scr_img_path}{mimi}')
+		mimi = 'remaining/mimi.jpg'
+        image = pygame.image.load(f'{self.scr_img_path}{mimi}')
         image = pygame.transform.scale(image,(Width, Height))
         self.surface.blit(image, (0,0))
 
     def show_scary(self):
         scr_bgm = 'ratsasan.mp3'
-        scr_img_path = 'resources/images/scr_imgs/'
+        self.scr_img_path = 'resources/images/scr_imgs/'
         scr_img = 'scr.jpg'
-scr_img2 = 'scr2.jpg'
+        scr_img2 = 'scr2.jpg'
         pygame.mixer.music.load(f'{self.musics_path}{scr_bgm}')
         pygame.mixer.music.play()
         sleep(5)
-        pygame.mixer.music.load(f'{musics_path}{scary_m}')
+        pygame.mixer.music.load(f'{self.musics_path}{scary_m}')
         pygame.mixer.music.play()
         sleep(1)
-        image = pygame.image.load(f'{scr_img_path}{scr_img}')
-
+        
+        image = pygame.image.load(f'{self.scr_img_path}{scr_img}')
         if random.randint(0,1) == 1:
-            image = pygame.image.load(f'{scr_img_path}{scr_img2}')
+            image = pygame.image.load(f'{self.scr_img_path}{scr_img2}')
 
         image = pygame.transform.scale(image,(Width, Height))
         self.surface.blit(image, (0,0))
