@@ -515,7 +515,7 @@ gameover_m = 'gameover.mp3'
         self.update_screen()
 
     def ang_mimi(self):
-	 = 'remaining/mimi.jpg'
+        mimi = 'remaining/mimi.jpg'
         image = pygame.image.load(f'{self.scr_img_path}{mimi}')
         image = pygame.transform.scale(image,(Width, Height))
         self.surface.blit(image, (0,0))
