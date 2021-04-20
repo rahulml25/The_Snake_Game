@@ -49,26 +49,10 @@ light_pink = (246, 205, 230)
 "Changeable Game Files"
 '⏹️Game '
 # Background
-bgi_path = 'resources/images/background/'
-
-bgi = 'bgi.jpg'
-bgi2 = 'remaining/flr.jpg'
-
 # Music Files
-musics_path = 'resources/musics/'
-
-bgm = 'bg_music.mp3'
-ding_m = 'ding.mp3'
-crash_m = 'crash.mp3'
-scr_bgm = 'ratsasan.mp3'
-scary_m = 'scary.mp3'
-gameover_m = 'gameover.mp3'
 
 # Scary images
-scr_img_path = 'resources/images/scr_imgs/'
 
-scr_img = 'scr.jpg'
-scr_img2 = 'scr2.jpg'
 mimi = 'remaining/mimi.jpg'
 
 # HighScore text File
@@ -334,24 +318,34 @@ class Game:
         self.load_bgIs()
         self.setObjects()
 
-        self.sond = None
+        self.bgm = None
         self.random_sound()
         
         self.welcome() # Automatically calling welcome Function to wish the user Welcome and to get command to stat the game or exit it
         
     def load_bgIs(self):
+        bgi_path = 'resources/images/background/'
+        bgi = 'bgi.jpg'
+        bgi2 = 'remaining/flr.jpg'
         self.bgIs = []
         bgFs = [bgi,bgi2]
         for i in bgFs:
-            f = pygame.image.load(f"{bgi_path}{i}") # Loading background image
-            ir = pygame.transform.scale(f, (Width, Height)).convert_alpha() # Resizing the background image
-            self.bgIs.append(ir)
+            bg = pygame.image.load(f"{bgi_path}{i}") # Loading background image
+            bgr = pygame.transform.scale(f, (Width, Height)).convert_alpha() # Resizing the background image
+            self.bgIs.append(bgr)
     
     # Defining Function to play the background music
     def play_background_music(self):
+        self.musics_path = 'resources/musics/'
+
+        bgm = 'bg_music.mp3'
+
+scary_m = 'scary.mp3'
+
+gameover_m = 'gameover.mp3'
         pygame.mixer.music.load(f'{musics_path}{bgm}') # Loading the background music
         pygame.mixer.music.play(-1,0) # Playbacking the background music
-        pygame.mixer.Sound.play(self.sond)
+        pygame.mixer.Sound.play(self.bgm)
 
     def random_sound(self):
         soundL = [s1,s2,s3,s4,s5,s6,s7]
@@ -370,13 +364,15 @@ class Game:
     
     # Defining Function to play a sound if the Apple 🍎 is eaten or the Snake 🐍 is collided
     def play_sound(self, sound_name):
+        ding_m = 'ding.mp3'
+        crash_m = 'crash.mp3'
         # Condition to play the 'crash.mp3' Sound file
         if sound_name == "crash":
-            sound = pygame.mixer.Sound(f"{musics_path}{crash_m}") #resources/crash.mp3")
+            sound = pygame.mixer.Sound(f"{self.musics_path}{crash_m}") #resources/crash.mp3")
         
         # Condition to play the 'ding.mp3' Sound file
         elif sound_name == 'ding':
-            sound = pygame.mixer.Sound(f"{musics_path}{ding_m}")
+            sound = pygame.mixer.Sound(f"{self.musics_path}{ding_m}")
 
         pygame.mixer.Sound.play(sound) # Playing the Sound
     
@@ -528,7 +524,11 @@ class Game:
         self.surface.blit(image, (0,0))
 
     def show_scary(self):
-        pygame.mixer.music.load(f'{musics_path}{scr_bgm}')
+        scr_bgm = 'ratsasan.mp3'
+        scr_img_path = 'resources/images/scr_imgs/'
+        scr_img = 'scr.jpg'
+scr_img2 = 'scr2.jpg'
+        pygame.mixer.music.load(f'{self.musics_path}{scr_bgm}')
         pygame.mixer.music.play()
         sleep(5)
         pygame.mixer.music.load(f'{musics_path}{scary_m}')
