@@ -498,10 +498,11 @@ gameover_m = 'gameover.mp3'
     # Defining Function to display Game is over, user commands, Score and High Score after the 'Game over'
     def show_gameover(self):
         self.ang_mimi()
-		
+        game_over_colour = red
+        if child_mode:
+                game_over_colour = blue
         # Showing 'Game is over'
         self.show_text('Game is over!', None, 80, game_over_colour, (50,300))
-        if child_mode: game_over_colour = red
         # Showing User commands
         self.show_text('To play again press Enter', 'arial', 30, white, (50,400))
         self.show_text('To exit press 0', 'arial', 30, white, (50,450))
@@ -514,7 +515,7 @@ gameover_m = 'gameover.mp3'
         self.update_screen()
 
     def ang_mimi(self):
-		mimi = 'remaining/mimi.jpg'
+	 = 'remaining/mimi.jpg'
         image = pygame.image.load(f'{self.scr_img_path}{mimi}')
         image = pygame.transform.scale(image,(Width, Height))
         self.surface.blit(image, (0,0))
