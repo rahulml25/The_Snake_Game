@@ -24,7 +24,6 @@ What's new:
 '''
 
 # Importing Modules
-
 import pygame
 from pygame.locals import *
 from time import sleep
@@ -48,12 +47,6 @@ semi_white = (200,200,200)
 light_pink = (246, 205, 230)
 
 "Changeable Game Files"
-
-'⏹️Snake 🐍'
-# Heads
-
-# Body
-
 '⏹️Game '
 # Background
 bgi_path = 'resources/images/background/'
