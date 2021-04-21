@@ -50,15 +50,6 @@ light_pink = (246, 205, 230)
 '⏹️Game '
 # HighScore text File
 # Sounds
-sound_effects_path = 'resources/musics/sound_effects/'
-
-s1 = 's1.mp3'
-s2 = 's2.mp3'
-s3 = 's3.mp3'
-s4 = 's4.mp3'
-s5 = 's5.mp3'
-s6 = 's6.mp3'
-s7 = 's7.mp3'
 
 # Game modes
 kaushik_mode = False
@@ -339,6 +330,21 @@ gameover_m = 'gameover.mp3'
         pygame.mixer.Sound.play(self.bgm)
 
     def random_sound(self):
+        sound_effects_path = 'resources/musics/sound_effects/'
+
+s1 = 's1.mp3'
+
+s2 = 's2.mp3'
+
+s3 = 's3.mp3'
+
+sa4 = 's4.mp3'
+
+s5 = 's5.mp3'
+
+s6 = 's6.mp3'
+
+s7 = 's7.mp3'
         soundL = [s1,s2,s3,s4,s5,s6,s7]
         n = random.randint(0,6)
         self.sond = pygame.mixer.Sound(f"{sound_effects_path}{soundL[n]}")
