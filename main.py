@@ -412,12 +412,12 @@ gameover_m = 'gameover.mp3'
         # Out than 'X' or 'Y' axis
         if self.snake.x[0]<= 0 or self.snake.y[0]<=0:
             self.play_sound('crash') # Playing 'crash.mp3' Sound which notifies that the Snake is out than 'X'or 'Y' axis
-            raise "Collision Occurred" # Calling Exception and 'Game over'
+            raise Exception("Collision Occurred") # Calling Exception and 'Game over'
         
         # Out than the screen Height or width
         if self.snake.x[0]>=Width or self.snake.y[0]>=Height:
             self.play_sound('crash') # Playing 'crash.mp3' Sound which notifies that the Snake is out than the screen Height or width
-            raise "Collision Occurred" # Calling Exception and 'Game over'
+            raise Exception("Collision Occurred") # Calling Exception and 'Game over'
         
     
     # Defining Welcome Function to show the starting and to run the game forward
@@ -477,7 +477,7 @@ gameover_m = 'gameover.mp3'
             for i in range(3, self.snake.length):
                 if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
                     self.play_sound('crash') # Playing 'crash.mp3' Sound which notifies that the Snake is Collided with itself
-                    raise "Collision Occurred" # Calling Exception and 'Game over'
+                    raise Exception("Collision Occurred") # Calling Exception and 'Game over'
         
         
     # Defining Function to displace User Game Score & High Score
